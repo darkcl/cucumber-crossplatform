@@ -2,7 +2,6 @@
 
 var {defineSupportCode} = require('cucumber');
 var {Builder, By, until} = require('selenium-webdriver');
-var fs = require('fs');
 var platform = process.env.PLATFORM || "CHROME";
 
 var buildAndroidDriver = function() {
@@ -24,7 +23,7 @@ var buildIosDriver = function() {
       platformName: "iOS",
       platformVersion: "10.3",
       deviceName: "iPhone Simulator"
-      // app: "/Users/darkcl/Documents/Workspace/Mastodon-iOS/Build/Products/Debug-iphonesimulator/Mastodon-iOS.app",
+      // app: "/Users/darkcl/Documents/Workspace/Mastodon-iOS/Build/Products/Debug-iphonesimulator/Mastodon-iOS.app", 
       // automationName: "XCUITest"
     }).
     build();
@@ -34,18 +33,14 @@ var buildChromeDriver = function() {
   return new Builder().forBrowser("chrome").build();
 };
 
-var buildFirefoxDriver = function() {
-    return new Builder().forBrowser("firefox").build();
-};
-
 var buildDriver = function() {
   switch(platform) {
     case 'ANDROID':
       return buildAndroidDriver();
-    case 'FIREFOX':
-      return buildFirefoxDriver();
     case 'IOS':
       return buildIosDriver();
+    case 'CHROME':
+      return buildChromeDriver();
     default:
       return buildChromeDriver();
   }
@@ -57,17 +52,11 @@ defineSupportCode(function({setDefaultTimeout}) {
 
 function CustomWorld({attach, parameter}) {
 
-  var screenshotPath = "screenshots";
-
   this.attach = attach;
 
   this.parameter = parameter;
 
   this.driver = buildDriver();
-
-  if(!fs.existsSync(screenshotPath)) {
-    fs.mkdirSync(screenshotPath);
-  }
 
 }
 

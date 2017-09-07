@@ -2,7 +2,7 @@
 
 var path = require('path');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   grunt.initConfig({
 
@@ -10,15 +10,11 @@ module.exports = function(grunt) {
       chrome: {
         PLATFORM: 'CHROME'
       },
-      
-      firefox: {
-        PLATFORM: 'FIREFOX'
-      },
 
       android: {
         PLATFORM: 'ANDROID'
       },
-      
+
       ios: {
         PLATFORM: 'IOS'
       }
@@ -41,17 +37,7 @@ module.exports = function(grunt) {
           theme: 'bootstrap',
           debug: true
         },
-        features : []
-      },
-
-      firefox: {
-        options: {
-          format: 'html',
-          output: './public/firefox/report.html',
-          theme: 'bootstrap',
-          debug: true
-        },
-        features : []
+        features: []
       },
 
       android: {
@@ -61,7 +47,7 @@ module.exports = function(grunt) {
           theme: 'bootstrap',
           debug: true
         },
-        features : []
+        features: []
       },
 
       ios: {
@@ -71,15 +57,9 @@ module.exports = function(grunt) {
           theme: 'bootstrap',
           debug: true
         },
-        features : []
+        features: []
       }
-      
-    },
 
-    exec: {
-      run_cucumber_tests: {
-        command: path.join('node_modules', 'cucumber',  'bin', 'cucumber.js')
-      }
     }
 
   });
@@ -91,8 +71,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['jshint', 'exec']);
   grunt.registerTask('chrome', ['env:chrome', 'jshint', 'cucumberjs:chrome']);
-  grunt.registerTask('firefox', ['env:firefox', 'jshint', 'cucumberjs:firefox']);
   grunt.registerTask('android', ['env:android', 'jshint', 'cucumberjs:android']);
   grunt.registerTask('ios', ['env:ios', 'jshint', 'cucumberjs:ios']);
-  grunt.registerTask('all', ['chrome', 'firefox', 'android', 'ios']);
+  grunt.registerTask('all', ['chrome', 'android', 'ios']);
 };
