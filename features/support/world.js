@@ -2,7 +2,9 @@
 
 var {defineSupportCode} = require('cucumber');
 var {Builder, By, until} = require('selenium-webdriver');
+var requireDir = require('require-dir');
 var platform = process.env.PLATFORM || "CHROME";
+var fs = require('fs');
 
 var buildAndroidDriver = function() {
   return new Builder().
@@ -10,7 +12,9 @@ var buildAndroidDriver = function() {
     withCapabilities({
       platformName: 'Android',
       deviceName: 'Android device',
-      browserName: 'Chrome'
+      browserName: 'Chrome',
+      deviceReadyTimeout: '60',
+      appWaitDuration: '60000'
     }).
     build();
 };
@@ -55,6 +59,14 @@ function CustomWorld({attach, parameter}) {
   this.attach = attach;
 
   this.parameter = parameter;
+
+  this.platform = platform;
+
+  if (fs.existsSync("../../pageobjects")) {
+    
+      // require all page objects using camel case as object names
+      this.page = requireDir("../../pageobjects", { camelcase: true });
+  }
 
   this.driver = buildDriver();
 
