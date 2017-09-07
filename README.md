@@ -1,4 +1,4 @@
-Cucumber For iOS, Android, Chrome Automation Testing
+Crossplatform Automation Testing With Cucumber, Selenium Webdriver and Appium
 ===
 
 This is a skeleton project, inspired by [Matt-B/cucumber-js-selenium-webdriver-example](https://github.com/Matt-B/cucumber-js-selenium-webdriver-example)
@@ -10,4 +10,4 @@ Setup
     ```npm i && brew install && brew install chromedriver && npm i appium -g && npm i grunt-cli -g```
 
 2. Run All Tests (can be ```ios```,```chrome```,```android```)
-    ```grunt all``
+    ```grunt all```
