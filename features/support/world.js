@@ -62,12 +62,6 @@ function CustomWorld({attach, parameter}) {
 
   this.platform = platform;
 
-  if (fs.existsSync("../../pageobjects")) {
-    
-      // require all page objects using camel case as object names
-      this.page = requireDir("../../pageobjects", { camelcase: true });
-  }
-
   this.driver = buildDriver();
 
 }

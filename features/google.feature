@@ -5,8 +5,8 @@ Feature: Searching for cucumbers
   
 
   Scenario Outline: Search For Cucumber.js in <site>
-    Given I am on "<site>"
-    When I search for "cucumber.js" on "<site>"
+    Given I am on "<site>" Page
+    When I search for "cucumber.js"
     Then I should see some results
 
   Examples:
